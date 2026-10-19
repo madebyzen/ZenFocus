@@ -190,14 +190,3 @@ body.panel-hidden .credit { opacity: 0; pointer-events: none; }
   .sound select { max-width: 92px; }
   .sound input[type="range"] { width: 60px; }
 }
-#minBtn , #closeBtn {
-  cursor : pointer;
-  border : none;
-  padding : 8px 12px ;
-  background : #333;
-  color : white ;
-  border-radious : 5px;
-}
-#closeBtn: hover{
-  background : red;
-}
