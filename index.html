@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ZenFocus - Pomodoro Timer</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#0b1226">
+<link rel="apple-touch-icon" href="/icon-192.png">
+</head>
+<body class="m-focus">
+
+  <canvas id="bg"></canvas>
+
+  <div id="videoLayer" class="hidden">
+    <iframe id="ytFrame" title="Background video"
+      allow="autoplay; encrypted-media; picture-in-picture"
+      referrerpolicy="strict-origin-when-cross-origin"></iframe>
+    <video id="fileVideo" class="hidden" autoplay loop muted playsinline></video>
+  </div>
+
+  <div class="shade"></div>
+
+  <div class="app">
+    <header>
+      <div class="brand">🌿 Zen<span>Focus</span></div>
+      <div class="top-btns">
+        <div class="sound">
+          <select id="ambient" aria-label="Ambient sound">
+            <option value="off">🔇 No sound</option>
+            <option value="rain">🌧 Rain sound</option>
+            <option value="ocean">🌊 Ocean sound</option>
+            <option value="wind">🍃 Wind sound</option>
+          </select>
+          <input type="range" id="vol" min="0" max="100" value="50" aria-label="Ambient volume">
+        </div>
+        <button id="hideBtn" class="round" title="Hide or show panel (H)">👁</button>
+        <button id="fsBtn" class="round" title="Full screen">⛶</button>
+      </div>
+    </header>
+
+    <main>
+      <section class="card" id="card">
+        <div class="tabs" id="modeTabs">
+          <button class="tab active" data-mode="focus">Focus</button>
+          <button class="tab" data-mode="short">Short break</button>
+          <button class="tab" data-mode="long">Long break</button>
+        </div>
+
+        <div class="ring-wrap">
+          <svg viewBox="0 0 300 300">
+            <circle class="track" cx="150" cy="150" r="130"></circle>
+            <circle class="prog" id="prog" cx="150" cy="150" r="130"></circle>
+          </svg>
+          <div class="ring-text">
+            <div id="time">25:00</div>
+            <div id="label">Focus time</div>
+          </div>
+        </div>
+
+        <div class="controls">
+          <button class="btn main" id="startBtn">Start</button>
+          <button class="btn" id="resetBtn">Reset</button>
+          <button class="btn" id="skipBtn">Skip</button>
+        </div>
+
+        <div class="dots" id="dots"><i></i><i></i><i></i><i></i></div>
+        <p class="today" id="today"></p>
+
+        <details class="settings">
+          <summary>⚙ Settings</summary>
+          <div class="set-grid">
+            <label>Focus (min)<input type="number" id="sFocus" min="1" max="180"></label>
+            <label>Short break<input type="number" id="sShort" min="1" max="60"></label>
+            <label>Long break<input type="number" id="sLong" min="1" max="90"></label>
+          </div>
+          <label class="check"><input type="checkbox" id="sAuto"> Start the next session automatically</label>
+        </details>
+      </section>
+    </main>
+
+    <div class="vbox hidden" id="vbox">
+      <p>Paste a YouTube link (live or normal). It plays right away, with its own sound if you turn it on.</p>
+      <div class="row">
+        <input type="text" id="ytLink" placeholder="https://www.youtube.com/watch?v=...">
+        <button class="btn small" id="ytPaste" title="Paste link from clipboard">📋 Paste</button>
+        <button class="btn main small" id="ytGo">Play</button>
+      </div>
+      <div class="row vsound">
+        <button class="btn small" id="vSoundBtn">🔇 Video sound off</button>
+        <input type="range" id="vVol" min="0" max="100" value="60" aria-label="Video volume">
+      </div>
+      <div class="row">
+        <button class="btn small" id="ytLofi">Lofi live</button>
+        <label class="btn small filebtn">Choose video from my computer
+          <input type="file" id="fileIn" accept="video/*" hidden>
+        </label>
+      </div>
+      <p class="hint" id="vhint"></p>
+    </div>
+
+    <footer class="dock">
+      <div class="scenes" id="scenes">
+        <div class="group">
+          <span class="glabel">Animated</span>
+          <button class="scene" data-scene="rain">🌧 Rain</button>
+          <button class="scene" data-scene="aurora">🌌 Aurora</button>
+          <button class="scene" data-scene="ocean">🌅 Ocean</button>
+          <button class="scene" data-scene="stars">✨ Night</button>
+          <button class="scene" data-scene="forest">🌿 Fireflies</button>
+        </div>
+        <div class="group">
+          <span class="glabel">Still</span>
+          <button class="scene" data-scene="mountains">🏔 Mountains</button>
+          <button class="scene" data-scene="lake">🏞 Lake</button>
+          <button class="scene" data-scene="meadow">🌾 Meadow</button>
+          <button class="scene" data-scene="lavender">💜 Lavender</button>
+          <button class="scene" data-scene="clouds">☁ Clouds</button>
+        </div>
+        <div class="group">
+          <span class="glabel">Video</span>
+          <button class="scene" data-scene="video">🎬 Live video</button>
+        </div>
+      </div>
+    </footer>
+
+    <p class="credit">Made with <span>❤</span> by Nipan</p>
+  </div>
+
+  <div id="toast"></div>
+  <script src="script.js"></script>
+</body>
+</html>
