@@ -655,3 +655,11 @@
   setMode('focus');
 })();
 if ("serviceWorker" in navigator) navigator.serviceWorker.register("/sw.js");
+// Minimize popup
+document.getElement("minBtn").onclick = () => {
+  window.resizeTo(400, 100);
+};
+// Close popup
+document.getElementByid("closeBtn").onclick = () => {
+  window.close();
+};
