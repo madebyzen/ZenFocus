@@ -1,1 +1,8 @@
-
+[{
+      "relation": ["delegate_permission/common.handle_all_urls"],
+      "target": {
+        "namespace": "android_app",
+        "package_name": "app.netlify.zenfocustime.twa",
+        "sha256_cert_fingerprints": ["FB:5D:68:5A:27:E3:F8:C3:FB:3C:BD:60:22:AC:44:6C:D8:64:30:A2:7F:D1:CC:FD:E1:35:38:9B:D4:46:77:AB"]
+      }
+    }]
